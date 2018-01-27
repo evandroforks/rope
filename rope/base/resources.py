@@ -207,6 +207,9 @@ class _ResourceMatcher(object):
         self.patterns = []
         self._compiled_patterns = []
 
+    def __str__(self):
+        return "%s. patterns: %s" % (self.__class__.__name__, str(self.patterns))
+
     def set_patterns(self, patterns):
         """Specify which resources to match
 

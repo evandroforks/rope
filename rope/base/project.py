@@ -223,6 +223,16 @@ class Project(_Project):
         self._init_prefs(prefs)
         self._init_source_folders()
 
+    def __str__(self):
+        representation = [
+            "%s. _address: %s" % (self.__class__.__name__, str(self._address)),
+            "_ropefolder_name: %s" % str(self._ropefolder_name),
+            "ignored: %s" % str(self.ignored),
+            "file_list: %s" % str(self.file_list),
+            "prefs: %s" % str(self.prefs),
+        ]
+        return ", ".join(representation)
+
     @utils.deprecated('Delete once deprecated functions are gone')
     def _init_source_folders(self):
         for path in self.prefs.get('source_folders', []):
@@ -354,6 +364,9 @@ class _FileListCacher(object):
             self._changed, self._invalid, self._invalid,
             self._invalid, self._invalid)
         self.project.add_observer(rawobserver)
+
+    def __str__(self):
+        return "%s" % self.files
 
     def get_files(self):
         if self.files is None:

@@ -4,6 +4,13 @@ class Prefs(object):
         self.prefs = {}
         self.callbacks = {}
 
+    def __str__(self):
+        representation = [
+            "%s. %s" % (self.__class__.__name__, str(self.prefs)),
+            "callbacks: %s" % str(self.callbacks),
+        ]
+        return ", ".join(representation)
+
     def set(self, key, value):
         """Set the value of `key` preference to `value`."""
         if key in self.callbacks:
